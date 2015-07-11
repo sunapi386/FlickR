@@ -1,0 +1,11 @@
+Workflow and todo list.
+
+1/ Login Activity: User might need to login, most Flickr API requires auth.
+2/ Popular Activity: Once view the most popular tags, and user clicks on a tag in the list.
+3/ Thumbnail Activity: Present a list of thumbnails with those tags.
+
+Extra goals:
+4/ Popular Activity: User can choose most popular daily vs weekly tags.
+5/ Popular Activity: User can choose more than one tag.
+6/ Thumbnail Activity: info on top of thumbnail.
+7/ Fullscreen Activity: User clicks on thumbnail.
