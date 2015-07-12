@@ -36,4 +36,5 @@ dependencies {
     // see https://github.com/codepath/android-rest-client-template
     compile files('libs/codepath-oauth.jar')
     compile files('libs/codepath-utils.jar')
+    compile files('libs/universal-image-loader-1.8.4.jar')
 }

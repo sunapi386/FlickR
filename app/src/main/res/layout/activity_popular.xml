@@ -18,13 +18,13 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <LinearLayout
+    <ListView
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/popular_activity_title">
+        android:layout_below="@+id/popular_activity_title"
+        android:id="@+id/popular_list">
 
-
-    </LinearLayout>
+    </ListView>
 </RelativeLayout>

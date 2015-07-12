@@ -26,4 +26,21 @@ public class FlickrRestClient extends OAuthBaseClient {
         setBaseUrl(BASE_URL);
     }
 
+    public void getInterestingnessList(AsyncHttpResponseHandler handler) {
+        // Returns the list of interesting photos for the most recent day or a user-specified date.
+        String apiUrl = getApiUrl("?&format=json&nojsoncallback=1&api_key=" + REST_CONSUMER_KEY +
+                "&method=flickr.interestingness.getList");
+        Log.d("DEBUG", "Sending API call to " + apiUrl);
+        client.get(apiUrl, null, handler);
+    }
+
+    public void flickrGetHotList(AsyncHttpResponseHandler handler) {
+        // https://www.flickr.com/services/api/flickr.tags.getHotList.html
+        // ex: https://api.flickr.com/services/rest?&format=json&nojsoncallback=1&api_key=d9da98bad53c44ec3774a802ba4e908c&method=flickr.tags.getHotList
+        String apiUrl = getApiUrl("?&format=json&nojsoncallback=1&api_key=" + REST_CONSUMER_KEY +
+                "&method=flickr.tags.getHotList");
+
+        Log.d("DEBUG", "Sending API call to " + apiUrl);
+        client.get(apiUrl, null, handler);
+    }
 }
