@@ -7,6 +7,11 @@ import android.view.View;
 
 import com.codepath.oauth.OAuthLoginActivity;
 
+/**
+ * Created by jason on 15-07-11.
+ * To query photos; we need to create our own REST client.
+ */
+
 
 public class LoginActivity extends OAuthLoginActivity<FlickrRestClient> {
 

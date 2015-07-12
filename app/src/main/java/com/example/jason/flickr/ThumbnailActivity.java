@@ -1,8 +1,8 @@
 package com.example.jason.flickr;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +17,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/**
+ * Created by jason on 15-07-11.
+ * Loads a bunch of thumbnails from user's query.
+ */
 
 public class ThumbnailActivity extends ActionBarActivity {
     private FlickrRestClient client;
@@ -45,7 +49,7 @@ public class ThumbnailActivity extends ActionBarActivity {
     }
 
     private void loadPhotos(String userClickedTag) {
-        client.setTag(userClickedTag);
+        client.setTag(userClickedTag); // this is bad facade and not scalable to multi-tags
         client.getPhotosByTag(new JsonHttpResponseHandler() {
             public void onSuccess(JSONObject json) {
                 Log.d("DEBUG", "getPhotosByTag result: " + json.toString());

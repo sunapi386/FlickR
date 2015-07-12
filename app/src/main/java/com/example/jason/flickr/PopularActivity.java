@@ -1,10 +1,9 @@
 package com.example.jason.flickr;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +20,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/**
+ * Created by jason on 15-07-11.
+ * Popular tags are listed here in a view. User clicks on tag
+ * and is shown thumbnails of it.
+ */
 
 public class PopularActivity extends ActionBarActivity {
     private FlickrRestClient client;

@@ -17,6 +17,7 @@ import java.util.ArrayList;
  * You can construct the source URL to a photo once you know its
  * ID, server ID, farm ID and secret, as returned by many API methods.
  * https://www.flickr.com/services/api/misc.urls.html
+ * This object is put into a SQLite database, in FlickerClientApp.
  */
 
 @Table(name = "photos")
@@ -55,5 +56,9 @@ public class FlickrPhoto extends Model {
 
     public static ArrayList<FlickrPhoto> recentPhotos() {
         return new Select().from(FlickrPhoto.class).orderBy("id DESC").limit("300").execute();
+    }
+
+    public String getUrl() {
+        return url;
     }
 }

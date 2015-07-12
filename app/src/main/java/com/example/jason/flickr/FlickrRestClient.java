@@ -3,14 +3,16 @@ package com.example.jason.flickr;
 import android.content.Context;
 import android.util.Log;
 
-import org.scribe.builder.api.Api;
-import org.scribe.builder.api.FlickrApi;
-
 import com.codepath.oauth.OAuthBaseClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import org.scribe.builder.api.Api;
+import org.scribe.builder.api.FlickrApi;
+
 /**
  * Created by jason on 15-07-11.
+ * Handles api calls.
+ * Refer to https://www.flickr.com/services/api/
  */
 
 public class FlickrRestClient extends OAuthBaseClient {
