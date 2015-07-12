@@ -16,63 +16,43 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class PopularActivity extends ActionBarActivity {
     private FlickrRestClient client;
     private ListView listView;
+    private ArrayList<String> popularTags;
+    private ArrayAdapter<String> listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popular);
         client = FlickrClientApp.getRestClient();
+        popularTags = new ArrayList<>();
         listView = (ListView) findViewById(R.id.popular_list);
+        listAdapter = new ArrayAdapter<>(this, R.layout.pop_row, popularTags);
+        listView.setAdapter(listAdapter);
         loadPopularTags();
-
     }
 
-    /* Popular Tags Example:
-   {
-      "hottags":{
-         "period":"day",
-         "count":1,
-         "tag":[
-            {
-               "score":"100",
-               "_content":"feb23"
-            }
-            {
-               "score":"97",
-               "_content":"whitenight"
-            },
-         ]
-      },
-      "stat":"ok"
-    }*/
     private void loadPopularTags() {
         client.flickrGetHotList(new JsonHttpResponseHandler() {
             public void onSuccess(JSONObject json) {
                 Log.d("DEBUG", "result: " + json.toString());
-
-//                try {
-//                    JSONArray tags = json.getJSONObject("hottags").getJSONArray("tag");
-//                    for (int t = 0; t < tags.length(); t++) {
-//                        String tag_name = tags.getJSONObject(t).getString("_content");
-//                        popularTags.add(tag_name);
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                    Log.e("DEBUG", e.toString());
-//                }
-
-//                Log.d("DEBUG", "Total items: " + popularTags.size());
+                try {
+                    JSONArray tags = json.getJSONObject("hottags").getJSONArray("tag");
+                    for (int t = 0; t < tags.length(); t++) {
+                        String tag_name = tags.getJSONObject(t).getString("_content");
+                        listAdapter.add(tag_name);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.e("DEBUG", e.toString());
+                }
+                Log.d("DEBUG", "Total items: " + popularTags.size());
             }
         });
-//        listAdapter = new ArrayAdapter<String>(context, R.layout.simplerow, popularTags);
-//        listView.setAdapter(listAdapter);
-
     }
 
     @Override
