@@ -1,11 +1,15 @@
 package com.example.jason.flickr;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -28,11 +32,25 @@ public class PopularActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popular);
+        final Context context = this.getApplicationContext();
         client = FlickrClientApp.getRestClient();
         popularTags = new ArrayList<>();
         listView = (ListView) findViewById(R.id.popular_list);
         listAdapter = new ArrayAdapter<>(this, R.layout.pop_row, popularTags);
         listView.setAdapter(listAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
+                String item = (String) adapter.getItemAtPosition(position);
+                Log.d("DEBUG", "click: " + item);
+                // tag is selected, show list of thumbnails matching those tags.
+                Intent intent = new Intent(context, ThumbnailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("userClickedTag", item);
+                intent.putExtras(bundle); //Put your id to your next Intent
+                startActivity(intent);
+            }
+        });
         loadPopularTags();
     }
 

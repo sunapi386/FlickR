@@ -1,17 +1,40 @@
 package com.example.jason.flickr;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.GridView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 public class ThumbnailActivity extends ActionBarActivity {
+    private FlickrRestClient client;
+    private ArrayList<FlickrPhoto> flickrPhotos;
+    private PhotoAdapter photosAdapter;
+    private GridView gvPhotos;
+    private TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thumbnail);
+        Intent intent = getIntent();
+//        client = FlickrClientApp.getRestClient();
+//        flickrPhotos = new ArrayList<>();
+//        photosAdapter = new PhotoAdapter(this, flickrPhotos);
+        title = (TextView) findViewById(R.id.thumbnail_title);
+//        gvPhotos = (GridView) findViewById(R.id.thumbnail_photos_gv);
+
+        String userClickedTag = intent.getStringExtra("userClickedTag");
+        Log.d("DEBUG", "ThumbnailActivity userClickedTag: " + userClickedTag);
+
+        title.setText("Tag: " + userClickedTag);
+//        gvPhotos.setAdapter(photosAdapter);
     }
 
     @Override

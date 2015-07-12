@@ -10,8 +10,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".PhotosActivity" >
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Flickr Photos"
+        android:id="@+id/thumbnail_title"
+        android:layout_gravity="center_horizontal" />
+
     <GridView
-        android:id="@+id/gvPhotos"
+        android:id="@+id/thumbnail_photos_gv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:numColumns="3" >
