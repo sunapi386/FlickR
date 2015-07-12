@@ -20,16 +20,18 @@ public class FlickrRestClient extends OAuthBaseClient {
     public static final String REST_CONSUMER_SECRET = "081187a655e3cd72";
     public static final String REST_CALLBACK_URL = "oauth://flickrRestCallback";
     public static final String BASE_URL = "https://api.flickr.com/services/rest";
+    private String tag;
 
     public FlickrRestClient(Context context) {
         super(context, REST_API_CLASS, REST_URL, REST_CONSUMER_KEY, REST_CONSUMER_SECRET, REST_CALLBACK_URL);
         setBaseUrl(BASE_URL);
     }
 
-    public void getInterestingnessList(AsyncHttpResponseHandler handler) {
-        // Returns the list of interesting photos for the most recent day or a user-specified date.
+    public void getPhotosByTag(AsyncHttpResponseHandler handler) {
+        // Return a list of photos matching some criteria.
+        // https://api.flickr.com/services/rest?&format=json&nojsoncallback=1&api_key=d9da98bad53c44ec3774a802ba4e908c&method=flickr.photos.search&tags=happy
         String apiUrl = getApiUrl("?&format=json&nojsoncallback=1&api_key=" + REST_CONSUMER_KEY +
-                "&method=flickr.interestingness.getList");
+                "&method=flickr.photos.search&tags=" + tag);
         Log.d("DEBUG", "Sending API call to " + apiUrl);
         client.get(apiUrl, null, handler);
     }
@@ -42,5 +44,9 @@ public class FlickrRestClient extends OAuthBaseClient {
 
         Log.d("DEBUG", "Sending API call to " + apiUrl);
         client.get(apiUrl, null, handler);
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 }
